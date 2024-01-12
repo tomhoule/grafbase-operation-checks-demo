@@ -21,6 +21,11 @@ g.datasource(pg)
 export default config({
   graph: g,
   // Authentication - https://grafbase.com/docs/auth
+  auth: {
+    rules: rules => {
+      rules.public()
+    },
+  },
   // Caching - https://grafbase.com/docs/graphql-edge-caching
   // cache: {
   //   rules: [
