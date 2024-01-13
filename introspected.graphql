@@ -349,6 +349,7 @@ type PgDetectorists {
 	id: Int!
 	name: String!
 	contactDetails: String
+	equipment: String
 	detectedItems(first: Int, last: Int, before: String, after: String, orderBy: [PgDetectedItemsOrderByInput!]): PgDetectedItemsConnection
 	detectingSessions(first: Int, last: Int, before: String, after: String, orderBy: [PgDetectingSessionsOrderByInput!]): PgDetectingSessionsConnection
 }
@@ -359,6 +360,7 @@ input PgDetectoristsCollection {
 	id: PgIntSearchFilterInput
 	name: PgStringSearchFilterInput
 	contactDetails: PgStringSearchFilterInput
+	equipment: PgStringSearchFilterInput
 	detectedItems: PgDetectedItemsCollectionContains
 	detectingSessions: PgDetectingSessionsCollectionContains
 	"""
@@ -382,6 +384,7 @@ input PgDetectoristsCreateInput {
 	id: Int
 	name: String!
 	contactDetails: String
+	equipment: String
 }
 type PgDetectoristsCreateManyPayload {
 	"""
@@ -431,6 +434,7 @@ input PgDetectoristsMutationCollection {
 	id: PgIntSearchFilterInput
 	name: PgStringSearchFilterInput
 	contactDetails: PgStringSearchFilterInput
+	equipment: PgStringSearchFilterInput
 	"""
 	All of the filters must match
 	"""
@@ -448,16 +452,19 @@ input PgDetectoristsOrderByInput {
 	id: PgOrderByDirection
 	name: PgOrderByDirection
 	contactDetails: PgOrderByDirection
+	equipment: PgOrderByDirection
 }
 type PgDetectoristsReturning {
 	id: Int!
 	name: String!
 	contactDetails: String
+	equipment: String
 }
 input PgDetectoristsUpdateInput {
 	id: PgIntUpdateInput
 	name: PgStringUpdateInput
 	contactDetails: PgStringUpdateInput
+	equipment: PgStringUpdateInput
 }
 type PgDetectoristsUpdateManyPayload {
 	"""
