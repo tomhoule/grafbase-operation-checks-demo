@@ -1,3 +1,709 @@
-Warning: Found both grafbase.config.ts and schema.graphql files
-Hint: Delete one of them to avoid conflicts
+"""
+A date string, such as 2007-12-03, is compliant with the full-date format outlined in section 5.6 of the RFC 3339 profile of the ISO 8601 standard for the representation of dates and times using the Gregorian calendar.
+
+This scalar is a description of the date, as used for birthdays for example. It cannot represent an instant on the timeline.
+"""
+scalar Date
+type Mutation {
+	pg: PgMutation
+}
+"""
+Search filter input for Date type.
+"""
+input PgDateSearchFilterInput {
+	"""
+	The value is exactly the one given
+	"""
+	eq: Date
+	"""
+	The value is not the one given
+	"""
+	ne: Date
+	"""
+	The value is greater than the one given
+	"""
+	gt: Date
+	"""
+	The value is less than the one given
+	"""
+	lt: Date
+	"""
+	The value is greater than, or equal to the one given
+	"""
+	gte: Date
+	"""
+	The value is less than, or equal to the one given
+	"""
+	lte: Date
+	"""
+	The value is in the given array of values
+	"""
+	in: [Date]
+	"""
+	The value is not in the given array of values
+	"""
+	nin: [Date]
+	not: PgDateSearchFilterInput
+}
+"""
+Update input for Date type.
+"""
+input PgDateUpdateInput {
+	"""
+	Replaces the value of a field with the specified value.
+	"""
+	set: Date
+}
+type PgDetectedItems {
+	id: Int!
+	type: String!
+	material: String
+	estimatedAge: String
+	foundBy: Int
+	detectorists: PgDetectorists
+}
+input PgDetectedItemsByInput {
+	id: Int
+}
+input PgDetectedItemsCollection {
+	id: PgIntSearchFilterInput
+	type: PgStringSearchFilterInput
+	material: PgStringSearchFilterInput
+	estimatedAge: PgStringSearchFilterInput
+	foundBy: PgIntSearchFilterInput
+	detectorists: PgDetectoristsCollection
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectedItemsCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectedItemsCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectedItemsCollection]
+}
+input PgDetectedItemsCollectionContains {
+	contains: PgDetectedItemsCollection
+}
+type PgDetectedItemsConnection {
+	edges: [PgDetectedItemsEdge]!
+	pageInfo: PgPageInfo!
+}
+input PgDetectedItemsCreateInput {
+	id: Int
+	type: String!
+	material: String
+	estimatedAge: String
+	foundBy: Int
+}
+type PgDetectedItemsCreateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectedItemsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectedItemsCreatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectedItemsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectedItemsDeleteManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectedItemsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectedItemsDeletePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectedItemsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectedItemsEdge {
+	node: PgDetectedItems!
+	cursor: String!
+}
+input PgDetectedItemsMutationCollection {
+	id: PgIntSearchFilterInput
+	type: PgStringSearchFilterInput
+	material: PgStringSearchFilterInput
+	estimatedAge: PgStringSearchFilterInput
+	foundBy: PgIntSearchFilterInput
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectedItemsMutationCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectedItemsMutationCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectedItemsMutationCollection]
+}
+input PgDetectedItemsOrderByInput {
+	id: PgOrderByDirection
+	type: PgOrderByDirection
+	material: PgOrderByDirection
+	estimatedAge: PgOrderByDirection
+	foundBy: PgOrderByDirection
+}
+type PgDetectedItemsReturning {
+	id: Int!
+	type: String!
+	material: String
+	estimatedAge: String
+	foundBy: Int
+}
+input PgDetectedItemsUpdateInput {
+	id: PgIntUpdateInput
+	type: PgStringUpdateInput
+	material: PgStringUpdateInput
+	estimatedAge: PgStringUpdateInput
+	foundBy: PgIntUpdateInput
+}
+type PgDetectedItemsUpdateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectedItemsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectedItemsUpdatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectedItemsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessions {
+	id: Int!
+	sessionDate: Date!
+	location: String!
+	detectoristId: Int
+	detectorists: PgDetectorists
+}
+input PgDetectingSessionsByInput {
+	id: Int
+}
+input PgDetectingSessionsCollection {
+	id: PgIntSearchFilterInput
+	sessionDate: PgDateSearchFilterInput
+	location: PgStringSearchFilterInput
+	detectoristId: PgIntSearchFilterInput
+	detectorists: PgDetectoristsCollection
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectingSessionsCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectingSessionsCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectingSessionsCollection]
+}
+input PgDetectingSessionsCollectionContains {
+	contains: PgDetectingSessionsCollection
+}
+type PgDetectingSessionsConnection {
+	edges: [PgDetectingSessionsEdge]!
+	pageInfo: PgPageInfo!
+}
+input PgDetectingSessionsCreateInput {
+	id: Int
+	sessionDate: Date!
+	location: String!
+	detectoristId: Int
+}
+type PgDetectingSessionsCreateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectingSessionsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessionsCreatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectingSessionsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessionsDeleteManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectingSessionsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessionsDeletePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectingSessionsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessionsEdge {
+	node: PgDetectingSessions!
+	cursor: String!
+}
+input PgDetectingSessionsMutationCollection {
+	id: PgIntSearchFilterInput
+	sessionDate: PgDateSearchFilterInput
+	location: PgStringSearchFilterInput
+	detectoristId: PgIntSearchFilterInput
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectingSessionsMutationCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectingSessionsMutationCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectingSessionsMutationCollection]
+}
+input PgDetectingSessionsOrderByInput {
+	id: PgOrderByDirection
+	sessionDate: PgOrderByDirection
+	location: PgOrderByDirection
+	detectoristId: PgOrderByDirection
+}
+type PgDetectingSessionsReturning {
+	id: Int!
+	sessionDate: Date!
+	location: String!
+	detectoristId: Int
+}
+input PgDetectingSessionsUpdateInput {
+	id: PgIntUpdateInput
+	sessionDate: PgDateUpdateInput
+	location: PgStringUpdateInput
+	detectoristId: PgIntUpdateInput
+}
+type PgDetectingSessionsUpdateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectingSessionsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectingSessionsUpdatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectingSessionsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectorists {
+	id: Int!
+	name: String!
+	contactDetails: String
+	detectedItems(first: Int, last: Int, before: String, after: String, orderBy: [PgDetectedItemsOrderByInput!]): PgDetectedItemsConnection
+	detectingSessions(first: Int, last: Int, before: String, after: String, orderBy: [PgDetectingSessionsOrderByInput!]): PgDetectingSessionsConnection
+}
+input PgDetectoristsByInput {
+	id: Int
+}
+input PgDetectoristsCollection {
+	id: PgIntSearchFilterInput
+	name: PgStringSearchFilterInput
+	contactDetails: PgStringSearchFilterInput
+	detectedItems: PgDetectedItemsCollectionContains
+	detectingSessions: PgDetectingSessionsCollectionContains
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectoristsCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectoristsCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectoristsCollection]
+}
+type PgDetectoristsConnection {
+	edges: [PgDetectoristsEdge]!
+	pageInfo: PgPageInfo!
+}
+input PgDetectoristsCreateInput {
+	id: Int
+	name: String!
+	contactDetails: String
+}
+type PgDetectoristsCreateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectoristsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectoristsCreatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectoristsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectoristsDeleteManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectoristsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectoristsDeletePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectoristsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectoristsEdge {
+	node: PgDetectorists!
+	cursor: String!
+}
+input PgDetectoristsMutationCollection {
+	id: PgIntSearchFilterInput
+	name: PgStringSearchFilterInput
+	contactDetails: PgStringSearchFilterInput
+	"""
+	All of the filters must match
+	"""
+	ALL: [PgDetectoristsMutationCollection]
+	"""
+	None of the filters must match
+	"""
+	NONE: [PgDetectoristsMutationCollection]
+	"""
+	At least one of the filters must match
+	"""
+	ANY: [PgDetectoristsMutationCollection]
+}
+input PgDetectoristsOrderByInput {
+	id: PgOrderByDirection
+	name: PgOrderByDirection
+	contactDetails: PgOrderByDirection
+}
+type PgDetectoristsReturning {
+	id: Int!
+	name: String!
+	contactDetails: String
+}
+input PgDetectoristsUpdateInput {
+	id: PgIntUpdateInput
+	name: PgStringUpdateInput
+	contactDetails: PgStringUpdateInput
+}
+type PgDetectoristsUpdateManyPayload {
+	"""
+	Returned items from the mutation.
+	"""
+	returning: [PgDetectoristsReturning]!
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+type PgDetectoristsUpdatePayload {
+	"""
+	Returned item from the mutation.
+	"""
+	returning: PgDetectoristsReturning
+	"""
+	The number of rows mutated.
+	"""
+	rowCount: Int!
+}
+"""
+Search filter input for Int type.
+"""
+input PgIntSearchFilterInput {
+	"""
+	The value is exactly the one given
+	"""
+	eq: Int
+	"""
+	The value is not the one given
+	"""
+	ne: Int
+	"""
+	The value is greater than the one given
+	"""
+	gt: Int
+	"""
+	The value is less than the one given
+	"""
+	lt: Int
+	"""
+	The value is greater than, or equal to the one given
+	"""
+	gte: Int
+	"""
+	The value is less than, or equal to the one given
+	"""
+	lte: Int
+	"""
+	The value is in the given array of values
+	"""
+	in: [Int]
+	"""
+	The value is not in the given array of values
+	"""
+	nin: [Int]
+	not: PgIntSearchFilterInput
+}
+"""
+Update input for Int type.
+"""
+input PgIntUpdateInput {
+	"""
+	Replaces the value of a field with the specified value.
+	"""
+	set: Int
+	"""
+	Increments the value of the field by the specified amount.
+	"""
+	increment: Int
+	"""
+	Decrements the value of the field by the specified amount.
+	"""
+	decrement: Int
+	"""
+	Multiplies the value of the field by the specified amount.
+	"""
+	multiply: Int
+	"""
+	Divides the value of the field with the given value.
+	"""
+	divide: Int
+}
+type PgMutation {
+	"""
+	Delete a unique DetectedItems by a field or combination of fields
+	"""
+	detectedItemsDelete(by: PgDetectedItemsByInput!): PgDetectedItemsDeletePayload
+	"""
+	Delete multiple rows of DetectedItems by a filter
+	"""
+	detectedItemsDeleteMany(filter: PgDetectedItemsMutationCollection!): PgDetectedItemsDeleteManyPayload
+	"""
+	Create a DetectedItems
+	"""
+	detectedItemsCreate(input: PgDetectedItemsCreateInput!): PgDetectedItemsCreatePayload
+	"""
+	Create multiple DetectedItemss
+	"""
+	detectedItemsCreateMany(input: [PgDetectedItemsCreateInput!]!): PgDetectedItemsCreateManyPayload
+	"""
+	Update a unique DetectedItems
+	"""
+	detectedItemsUpdate(by: PgDetectedItemsByInput!, input: PgDetectedItemsUpdateInput!): PgDetectedItemsUpdatePayload
+	"""
+	Update multiple DetectedItemss
+	"""
+	detectedItemsUpdateMany(filter: PgDetectedItemsMutationCollection!, input: PgDetectedItemsUpdateInput!): PgDetectedItemsUpdateManyPayload
+	"""
+	Delete a unique DetectingSessions by a field or combination of fields
+	"""
+	detectingSessionsDelete(by: PgDetectingSessionsByInput!): PgDetectingSessionsDeletePayload
+	"""
+	Delete multiple rows of DetectingSessions by a filter
+	"""
+	detectingSessionsDeleteMany(filter: PgDetectingSessionsMutationCollection!): PgDetectingSessionsDeleteManyPayload
+	"""
+	Create a DetectingSessions
+	"""
+	detectingSessionsCreate(input: PgDetectingSessionsCreateInput!): PgDetectingSessionsCreatePayload
+	"""
+	Create multiple DetectingSessionss
+	"""
+	detectingSessionsCreateMany(input: [PgDetectingSessionsCreateInput!]!): PgDetectingSessionsCreateManyPayload
+	"""
+	Update a unique DetectingSessions
+	"""
+	detectingSessionsUpdate(by: PgDetectingSessionsByInput!, input: PgDetectingSessionsUpdateInput!): PgDetectingSessionsUpdatePayload
+	"""
+	Update multiple DetectingSessionss
+	"""
+	detectingSessionsUpdateMany(filter: PgDetectingSessionsMutationCollection!, input: PgDetectingSessionsUpdateInput!): PgDetectingSessionsUpdateManyPayload
+	"""
+	Delete a unique Detectorists by a field or combination of fields
+	"""
+	detectoristsDelete(by: PgDetectoristsByInput!): PgDetectoristsDeletePayload
+	"""
+	Delete multiple rows of Detectorists by a filter
+	"""
+	detectoristsDeleteMany(filter: PgDetectoristsMutationCollection!): PgDetectoristsDeleteManyPayload
+	"""
+	Create a Detectorists
+	"""
+	detectoristsCreate(input: PgDetectoristsCreateInput!): PgDetectoristsCreatePayload
+	"""
+	Create multiple Detectoristss
+	"""
+	detectoristsCreateMany(input: [PgDetectoristsCreateInput!]!): PgDetectoristsCreateManyPayload
+	"""
+	Update a unique Detectorists
+	"""
+	detectoristsUpdate(by: PgDetectoristsByInput!, input: PgDetectoristsUpdateInput!): PgDetectoristsUpdatePayload
+	"""
+	Update multiple Detectoristss
+	"""
+	detectoristsUpdateMany(filter: PgDetectoristsMutationCollection!, input: PgDetectoristsUpdateInput!): PgDetectoristsUpdateManyPayload
+}
+enum PgOrderByDirection {
+	ASC
+	DESC
+}
+type PgPageInfo {
+	hasPreviousPage: Boolean!
+	hasNextPage: Boolean!
+	startCursor: String
+	endCursor: String
+}
+type PgQuery {
+	"""
+	Query a single PgDetectedItems by a field
+	"""
+	detectedItems(by: PgDetectedItemsByInput!): PgDetectedItems
+	"""
+	Paginated query to fetch the whole list of DetectedItems
+	"""
+	detectedItemsCollection(filter: PgDetectedItemsCollection, first: Int, last: Int, before: String, after: String, orderBy: [PgDetectedItemsOrderByInput]): PgDetectedItemsConnection
+	"""
+	Query a single PgDetectingSessions by a field
+	"""
+	detectingSessions(by: PgDetectingSessionsByInput!): PgDetectingSessions
+	"""
+	Paginated query to fetch the whole list of DetectingSessions
+	"""
+	detectingSessionsCollection(filter: PgDetectingSessionsCollection, first: Int, last: Int, before: String, after: String, orderBy: [PgDetectingSessionsOrderByInput]): PgDetectingSessionsConnection
+	"""
+	Query a single PgDetectorists by a field
+	"""
+	detectorists(by: PgDetectoristsByInput!): PgDetectorists
+	"""
+	Paginated query to fetch the whole list of Detectorists
+	"""
+	detectoristsCollection(filter: PgDetectoristsCollection, first: Int, last: Int, before: String, after: String, orderBy: [PgDetectoristsOrderByInput]): PgDetectoristsConnection
+}
+"""
+Search filter input for String type.
+"""
+input PgStringSearchFilterInput {
+	"""
+	The value is exactly the one given
+	"""
+	eq: String
+	"""
+	The value is not the one given
+	"""
+	ne: String
+	"""
+	The value is greater than the one given
+	"""
+	gt: String
+	"""
+	The value is less than the one given
+	"""
+	lt: String
+	"""
+	The value is greater than, or equal to the one given
+	"""
+	gte: String
+	"""
+	The value is less than, or equal to the one given
+	"""
+	lte: String
+	"""
+	The value is in the given array of values
+	"""
+	in: [String]
+	"""
+	The value is not in the given array of values
+	"""
+	nin: [String]
+	not: PgStringSearchFilterInput
+}
+"""
+Update input for String type.
+"""
+input PgStringUpdateInput {
+	"""
+	Replaces the value of a field with the specified value.
+	"""
+	set: String
+}
+type Query {
+	pg: PgQuery
+}
+schema {
+	query: Query
+	mutation: Mutation
+}
 
