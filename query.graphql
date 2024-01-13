@@ -1,0 +1,12 @@
+{
+  pg {
+    detectoristsCollection(first: 10) {
+      edges {
+        node {
+          name
+          equipment
+        }
+      }
+    }
+  }
+}
